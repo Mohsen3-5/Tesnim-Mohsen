@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>محسن وتسنيم - بطاقة دعوة الزفاف</title>
 
   <!-- Google Fonts -->
@@ -12,10 +12,11 @@
     body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
       color: #333;
       background: #f7f0f5;
       direction: rtl;
+      padding: 1em;
     }
 
     .slide {
@@ -29,6 +30,7 @@
       text-align: center;
       transition: transform 1s ease;
       padding: 1em;
+      box-sizing: border-box;
     }
 
     .slide:nth-child(1) { background: #f7f0f5; }
@@ -81,21 +83,13 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.15);
       border: 2px solid #eee;
       z-index: 2;
+      box-sizing: border-box;
     }
-
-    .details-card-container::before,
-    .details-card-container::after {
-      content: "";
-      position: absolute;
-      width: 50px; height: 50px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ornamental-flourish.svg/1024px-Ornamental-flourisng') no-repeat center center / contain;
-      opacity: 0.2;
-    }
-    .details-card-container::before { top: -25px; right: -25px; }
-    .details-card-container::after { bottom: -25px; left: -25px; }
 
     .couple-photo {
-      width: 150px; height: 150px;
+      width: 150px;
+      max-width: 100%;
+      height: auto;
       border-radius: 10px;
       border: 8px solid #fff;
       object-fit: cover;
@@ -104,9 +98,9 @@
       transform: rotate(2deg);
     }
 
-    .details-card-container h1 {
+    .slide h1 {
       font-family: 'Tajawal', sans-serif;
-      font-size: 2.8em;
+      font-size: clamp(2em, 8vw, 3em);
       margin: 0.3em 0;
       color: #b35f77;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
@@ -121,12 +115,18 @@
 
     .countdown-flex {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap; /* stay in one line */
+      gap: 1em;
       margin: 1em 0;
+      overflow-x: auto; /* allow scrolling on small screens */
       font-family: 'Tajawal', sans-serif;
     }
 
     .countdown-flex div {
+      flex: 0 0 auto;
+      min-width: 60px;
       text-align: center;
     }
 
@@ -153,7 +153,9 @@
     }
 
     .location-link {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin: 0 auto;
       background: #b35f77;
       color: #fff;
       padding: 0.6em 1.2em;
@@ -166,116 +168,116 @@
       background: #94415d;
     }
 
-    @media (max-width: 768px) {
-      .details-card-container h1 { font-size: 2.2em; }
-      .subtitle { font-size: 1em; }
-      .countdown-flex span { font-size: 1.4em; }
+    @media (max-width: 480px) {
+      .countdown-flex span {
+        font-size: 1.4em;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Slide 1 -->
-  <div class="slide visible" id="slide1">
-    <h1 style="font-size: 3em;">💍 محسن وتسنيم 💍</h1>
-    <h2>ندعوكم بكل حب!</h2>
-    <p>نتشرف بحضوركم ومشاركتنا فرحتنا</p>
-  </div>
+<!-- Slide 1 -->
+<div class="slide visible" id="slide1">
+  <h1>💍 محسن وتسنيم 💍</h1>
+  <h2>ندعوكم بكل حب!</h2>
+  <p>نتشرف بحضوركم ومشاركتنا فرحتنا</p>
+</div>
 
-  <!-- Slide 2 -->
-  <div class="slide hidden" id="slide2">
-    <h1>قصتنا</h1>
-    <p>التقينا.. ضحكنا.. حلمنا.. وها نحن نعد للأبد.</p>
-    <p>لا يسعنا الانتظار لنحتفل معكم!</p>
-  </div>
+<!-- Slide 2 -->
+<div class="slide hidden" id="slide2">
+  <h1>قصتنا</h1>
+  <p>التقينا.. ضحكنا.. حلمنا.. وها نحن نعد للأبد.</p>
+  <p>لا يسعنا الانتظار لنحتفل معكم!</p>
+</div>
 
-  <!-- Slide 3: بطاقة تفاصيل الزفاف -->
-  <div class="slide hidden" id="slide3">
-    <div class="floating-petals"></div>
-    <div class="details-card-container">
-      <img class="couple-photo" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="صورة العروسين" />
-      <h1>محسن و تسنيم</h1>
-      <p class="subtitle">موعد زفافنا: 25 يوليو 2025</p>
+<!-- Slide 3: بطاقة تفاصيل الزفاف -->
+<div class="slide hidden" id="slide3">
+  <div class="floating-petals"></div>
+  <div class="details-card-container">
+    <img class="couple-photo" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="صورة العروسين" />
+    <h1>محسن و تسنيم</h1>
+    <p class="subtitle">موعد زفافنا: 25 يوليو 2025</p>
 
-      <div class="countdown-flex">
-        <div><span id="days">0</span><small>أيام</small></div>
-        <div><span id="hours">0</span><small>ساعات</small></div>
-        <div><span id="minutes">0</span><small>دقائق</small></div>
-        <div><span id="seconds">0</span><small>ثواني</small></div>
-      </div>
-
-      <p class="wedding-info">
-        الجمعة 25 يوليو 2025<br/>
-        من 7:00 مساءً حتى 10:00 مساءً<br/>
-        قاعة بلقيس، <br/>
-      </p>
-
-      <a class="location-link" href="YOUR_GOOGLE_MAPS_LINK" target="_blank">موقع القاعة</a>
+    <div class="countdown-flex">
+      <div><span id="days">0</span><small>أيام</small></div>
+      <div><span id="hours">0</span><small>ساعات</small></div>
+      <div><span id="minutes">0</span><small>دقائق</small></div>
+      <div><span id="seconds">0</span><small>ثواني</small></div>
     </div>
+
+    <p class="wedding-info">
+      الجمعة 25 يوليو 2025<br/>
+      من 7:00 مساءً حتى 10:00 مساءً<br/>
+      قاعة بلقيس<br/>
+    </p>
+
+    <a class="location-link" href="YOUR_GOOGLE_MAPS_LINK" target="_blank">موقع القاعة</a>
   </div>
+</div>
 
-  <div class="progress-bar"><div class="progress-fill"></div></div>
+<div class="progress-bar"><div class="progress-fill"></div></div>
 
-  <script>
-    let currentSlide = 1;
-    const slideInterval = 4000;
-    const fill = document.querySelector('.progress-fill');
+<script>
+  let currentSlide = 1;
+  const slideInterval = 4000;
+  const fill = document.querySelector('.progress-fill');
 
-    function startProgressBar() {
-      if (fill) {
-        fill.style.transition = 'none';
-        fill.style.width = '0%';
-        void fill.offsetWidth;
-        fill.style.transition = `width ${slideInterval}ms linear`;
-        fill.style.width = '100%';
-      }
+  function startProgressBar() {
+    if (fill) {
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      void fill.offsetWidth;
+      fill.style.transition = `width ${slideInterval}ms linear`;
+      fill.style.width = '100%';
+    }
+  }
+
+  function nextSlide() {
+    const current = document.getElementById(`slide${currentSlide}`);
+    const next = document.getElementById(`slide${currentSlide + 1}`);
+    if (next) {
+      current.classList.remove('visible');
+      current.classList.add('hidden');
+      next.classList.remove('hidden');
+      next.classList.add('visible');
+      currentSlide++;
+      startProgressBar();
+    } else {
+      clearInterval(slideTimer);
+      fill.style.width = '100%';
+    }
+  }
+
+  startProgressBar();
+  const slideTimer = setInterval(nextSlide, slideInterval);
+
+  // Countdown
+  const weddingDate = new Date('2025-07-25T19:00:00').getTime();
+  function updateNewCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      document.getElementById('days').innerHTML = "0";
+      document.getElementById('hours').innerHTML = "0";
+      document.getElementById('minutes').innerHTML = "0";
+      document.getElementById('seconds').innerHTML = "0";
+      return;
     }
 
-    function nextSlide() {
-      const current = document.getElementById(`slide${currentSlide}`);
-      const next = document.getElementById(`slide${currentSlide + 1}`);
-      if (next) {
-        current.classList.remove('visible');
-        current.classList.add('hidden');
-        next.classList.remove('hidden');
-        next.classList.add('visible');
-        currentSlide++;
-        startProgressBar();
-      } else {
-        clearInterval(slideTimer);
-        fill.style.width = '100%';
-      }
-    }
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    startProgressBar();
-    const slideTimer = setInterval(nextSlide, slideInterval);
+    document.getElementById('days').innerHTML = days;
+    document.getElementById('hours').innerHTML = hours;
+    document.getElementById('minutes').innerHTML = minutes;
+    document.getElementById('seconds').innerHTML = seconds;
+  }
 
-    // Countdown
-    const weddingDate = new Date('2025-07-25T19:00:00').getTime();
-    function updateNewCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) {
-        document.getElementById('days').innerHTML = "0";
-        document.getElementById('hours').innerHTML = "0";
-        document.getElementById('minutes').innerHTML = "0";
-        document.getElementById('seconds').innerHTML = "0";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').innerHTML = days;
-      document.getElementById('hours').innerHTML = hours;
-      document.getElementById('minutes').innerHTML = minutes;
-      document.getElementById('seconds').innerHTML = seconds;
-    }
-
-    updateNewCountdown();
-    setInterval(updateNewCountdown, 1000);
-  </script>
+  updateNewCountdown();
+  setInterval(updateNewCountdown, 1000);
+</script>
 </body>
 </html>
